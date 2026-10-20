@@ -10,8 +10,10 @@ const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-119
 let bad = 0;
 for (const [name, html] of Object.entries(S)) {
   fs.writeFileSync(`${out}_html/${name}.html`, page(html));
+  fs.mkdirSync(out + 'interactive', { recursive: true });
+  fs.writeFileSync(`${out}interactive/${name}.html`, page(html, true));
   const web = name.includes('web-');
-  const p = await b.newPage({ viewport: web ? { width: 1440, height: 900 } : { width: 390, height: 844 }, deviceScaleFactor: 2 });
+  const p = await b.newPage({ reducedMotion: 'reduce', viewport: web ? { width: 1440, height: 900 } : { width: 390, height: 844 }, deviceScaleFactor: 2 });
   await p.goto('file://' + `${out}_html/${name}.html`);
   await p.evaluate(() => document.fonts.ready);
   const issues = await p.evaluate(() => {
@@ -30,4 +32,5 @@ for (const [name, html] of Object.entries(S)) {
   await p.close();
 }
 await b.close();
+fs.writeFileSync(out + 'interactive/index.html', page(`<div style="max-width:560px;margin:40px auto;padding:0 16px;font-family:Inter,sans-serif"><h1 style="color:#0B2545;font-size:22px">Hoàng Anh Connect – bản xem trước tương tác</h1><p style="color:#4B5A6E;margin:8px 0 18px">BẢN XEM TRƯỚC – DỮ LIỆU MẪU. Thử bấm nút (hiệu ứng nhấn, gợn sóng, đang xử lý), chuyển tab, bật/tắt công tắc, dùng phím Tab để thấy viền focus.</p><ol style="line-height:2">` + Object.keys(S).map(n => `<li><a href="${n}.html" style="color:#1D4ED8">${n}</a></li>`).join('') + `</ol></div>`));
 console.log('xong', Object.keys(S).length, 'ảnh;', bad, 'ảnh có cảnh báo');

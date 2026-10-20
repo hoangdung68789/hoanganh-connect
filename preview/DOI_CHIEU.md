@@ -27,6 +27,7 @@ Mã nguồn dựng ảnh nằm ở `preview/_src/` (chạy `node build.mjs`); đ
 | 20 | `20-audit-log.png` | Audit log (điện thoại) | 16 |
 | 21 | `21-web-dashboard-dieu-hanh.png` | Web: dashboard điều hành | 2.1, 4.4 |
 | 22 | `22-web-phan-quyen-audit-log.png` | Web: trung tâm phân quyền và audit log | 14.3, 16 |
+| 23 | `23-hieu-ung-nut-bam.png` | Các trạng thái nút: mặc định, hover, nhấn, focus, đang xử lý, thành công, vô hiệu | 4.1, 4.3 |
 
 ## Huy hiệu 7 cấp bậc (mục 4.2)
 Mỗi huy hiệu gồm màu + icon + nhãn chữ: Học viên (xanh dương nhạt), Chuyên viên (xanh lá), Đội trưởng (cam), Phó Phòng (xanh dương đậm), Trưởng Phòng (tím), Giám đốc (vàng), Trợ lý (xanh ngọc). Hiển thị trong ảnh 03, 04, 05, 06, 08, 18, 19, 21, 22.
@@ -35,3 +36,10 @@ Mỗi huy hiệu gồm màu + icon + nhãn chữ: Học viên (xanh dương nh�
 - Cấu trúc điều hướng dưới cùng: Trang chủ, Chat, Danh bạ, Thông báo, Thêm.
 - Dark mode (mục 4.1 "nếu triển khai"): preview chưa vẽ; sẽ cân nhắc khi build.
 - Ảnh đại diện trong preview là chữ cái viết tắt, chưa có ảnh thật.
+
+## Cập nhật v2 – giao diện chuyên nghiệp có hiệu ứng (theo yêu cầu của Dũng)
+- Giữ nguyên bố cục, màu navy – trắng – xám và huy hiệu 7 cấp đã xem; chỉ nâng chất lượng hiển thị.
+- Nút: nền gradient navy, bóng nhiều lớp; hover nâng 1px; nhấn thu nhỏ 97% kèm gợn sóng; focus viền xanh 3px; trạng thái đang xử lý (`aria-busy`), thành công, vô hiệu.
+- Chuyển động: nội dung vào màn hình lần lượt (420ms), thanh tiến độ chạy từ trái, công tắc trượt, chỉ báo tab, bóng thẻ nâng khi hover.
+- Tôn trọng `prefers-reduced-motion`: toàn bộ animation tắt, hiện ngay trạng thái cuối. Các ảnh PNG chụp ở trạng thái này.
+- Bản thử tương tác: mở `preview/interactive/index.html` bằng trình duyệt (bấm nút, chuyển tab, bật/tắt công tắc, dùng phím Tab).

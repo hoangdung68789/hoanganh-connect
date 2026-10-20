@@ -165,6 +165,67 @@ table{width:100%;border-collapse:collapse;font-size:13px}
 th{text-align:left;font-size:11.5px;color:var(--t3);font-weight:700;letter-spacing:.03em;padding:8px 10px;border-bottom:1px solid var(--line);text-transform:uppercase}
 td{padding:9px 10px;border-bottom:1px solid #EEF1F6;vertical-align:middle}
 tr:last-child td{border-bottom:0}
+
+/* ===== Nâng cấp chuyên nghiệp: chuyển động + nút bấm (tokens dùng chung) ===== */
+:root{--e-out:cubic-bezier(.22,1,.36,1);--d-fast:140ms;--d-base:220ms;--d-slow:420ms;--sh1:0 1px 2px rgba(11,37,69,.05),0 10px 22px -14px rgba(11,37,69,.22);--ring:0 0 0 3px rgba(29,78,216,.35)}
+.status,.bar{background:linear-gradient(135deg,#0B2545 0%,#13315C 100%)}
+.status{background:#0B2545}.status.light{background:var(--bg)}
+.bar{box-shadow:0 6px 16px -10px rgba(11,37,69,.6);position:relative;z-index:1}
+.card,.stat{box-shadow:var(--sh1);transition:transform var(--d-base) var(--e-out),box-shadow var(--d-base) var(--e-out)}
+.grid2>.card,.stat{cursor:pointer}
+.grid2>.card:hover,.stat:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(11,37,69,.06),0 16px 28px -14px rgba(11,37,69,.3)}
+.grid2>.card:active,.stat:active{transform:translateY(0) scale(.98)}
+.li{transition:background var(--d-fast)}
+.li:hover{background:#F5F8FD}.li:active{background:#EBF1FA}
+.ico{transition:transform var(--d-base) var(--e-out),background var(--d-fast)}
+.li:hover .ico,.grid2>.card:hover .ico{transform:scale(1.08)}
+.btn{position:relative;overflow:hidden;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;background:linear-gradient(180deg,#1A4585 0%,#0B2545 100%);border-color:#0B2545;box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 8px 16px -8px rgba(11,37,69,.6);transition:transform var(--d-fast) var(--e-out),box-shadow var(--d-base) var(--e-out),background var(--d-base),border-color var(--d-base),color var(--d-base)}
+.btn:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 12px 22px -8px rgba(11,37,69,.65)}
+.btn:active{transform:translateY(0) scale(.97);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 2px 6px -2px rgba(11,37,69,.6)}
+.btn:focus-visible,.tab:focus-visible,.seg>div:focus-visible,.tog:focus-visible,.sel:focus-visible,.inp:focus-visible{outline:none;box-shadow:var(--ring)}
+.btn.sec2{background:#fff;color:var(--navy);box-shadow:0 1px 2px rgba(11,37,69,.08)}
+.btn.sec2:hover{background:#F1F5FB;border-color:var(--navy2);box-shadow:0 6px 14px -8px rgba(11,37,69,.35)}
+.btn.sec2:active{background:#E6EDF8;box-shadow:none}
+.btn.dng{box-shadow:0 1px 2px rgba(185,28,28,.08)}
+.btn.dng:hover{background:var(--erbg);border-color:var(--er);box-shadow:0 6px 14px -8px rgba(185,28,28,.4)}
+.btn.dis{box-shadow:none;cursor:not-allowed;transform:none}
+.btn.loading{pointer-events:none;filter:saturate(.8)}
+.btn.loading::before{content:'';width:16px;height:16px;flex:none;border-radius:50%;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;animation:spin .7s linear infinite}
+.btn.sec2.loading::before{border-color:rgba(11,37,69,.2);border-top-color:var(--navy)}
+.btn.done{background:linear-gradient(180deg,#1E9B55,#15803D);border-color:#15803D}
+.rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.38);transform:scale(0);animation:rip .6s var(--e-out);pointer-events:none}
+.sec2 .rip,.dng .rip{background:rgba(11,37,69,.14)}
+.sel,.inp,.search,.seg>div,.tab,.tog{transition:all var(--d-base) var(--e-out)}
+.sel{cursor:pointer}.sel:hover{border-color:var(--navy2);box-shadow:0 4px 12px -8px rgba(11,37,69,.4)}
+.inp:hover{border-color:#9FB0CA}
+.seg>div{cursor:pointer}.seg>div:not(.on):hover{color:var(--navy);background:rgba(255,255,255,.55)}
+.seg>div:active{transform:scale(.97)}
+.tog{cursor:pointer}.tog::after{transition:left var(--d-base) var(--e-out),width var(--d-fast);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.tog:active::after{width:22px}.tog.on:active::after{left:15px}
+.tab{cursor:pointer}.tab:hover{color:var(--navy2)}.tab:active{transform:scale(.92)}
+.tab.on::before{content:'';position:absolute;top:-6px;width:30px;height:3px;border-radius:0 0 4px 4px;background:var(--navy);animation:ind var(--d-base) var(--e-out)}
+.tab .dot{animation:pulse 2.4s ease-in-out infinite}
+.bar-fg{transform-origin:left center;animation:grow .9s var(--e-out) .3s backwards}
+.body>*{animation:up var(--d-slow) var(--e-out) backwards}
+.body>*:nth-child(1){animation-delay:30ms}.body>*:nth-child(2){animation-delay:80ms}.body>*:nth-child(3){animation-delay:130ms}.body>*:nth-child(4){animation-delay:180ms}.body>*:nth-child(5){animation-delay:230ms}.body>*:nth-child(6){animation-delay:280ms}.body>*:nth-child(n+7){animation-delay:330ms}
+.cont>*{animation:up var(--d-slow) var(--e-out) backwards}.cont>*:nth-child(2){animation-delay:90ms}.cont>*:nth-child(3){animation-delay:180ms}
+.bubble{animation:pop .35s var(--e-out) backwards}
+tr{transition:background var(--d-fast)}tbody tr:hover{background:#F5F8FD}
+.side .it{cursor:pointer;transition:background var(--d-fast),transform var(--d-fast) var(--e-out)}.side .it:hover{background:rgba(255,255,255,.08);transform:translateX(2px)}
+/* trạng thái ép sẵn để minh họa tĩnh */
+.btn.is-hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 12px 22px -8px rgba(11,37,69,.65)}
+.btn.sec2.is-hover{background:#F1F5FB;border-color:var(--navy2)}
+.btn.is-press{transform:scale(.97);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 2px 6px -2px rgba(11,37,69,.6)}
+.btn.sec2.is-press{background:#E6EDF8;box-shadow:none}
+.btn.is-focus{box-shadow:var(--ring)}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.94) translateY(6px)}to{opacity:1;transform:none}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes rip{to{transform:scale(4);opacity:0}}
+@keyframes ind{from{width:0;opacity:0}to{width:30px;opacity:1}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.btn:hover,.grid2>.card:hover,.stat:hover{transform:none}}
 `;
 
 const TABS = [['home', 'Trang chủ'], ['chat', 'Chat'], ['users', 'Danh bạ'], ['bell', 'Thông báo'], ['menu', 'Thêm']];
@@ -181,4 +242,6 @@ export function web({ active, title, body, user = ['Giám đốc Mẫu', 'gd'] }
 <div class="main"><div class="top"><h1 style="font-size:20px;font-weight:800;flex:1">${title}</h1><div class="search" style="width:300px;height:38px">${ic('search', 17)}Tìm kiếm</div><div class="btn-i" style="color:var(--navy2)">${ic('bell', 21)}</div><div class="row">${av(user[0], 36)}<div><div class="nm" style="font-size:13px">${user[0]}</div>${badge(user[1], true)}</div></div></div>
 <div class="cont">${body}</div></div></div><div class="foot" style="height:26px;font-size:11px">BẢN XEM TRƯỚC – DỮ LIỆU MẪU</div></div>`;
 }
-export const page = (inner) => `<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><style>${CSS}</style></head><body>${inner}</body></html>`;
+import fs from 'fs';
+const CLIENT = fs.readFileSync(new URL('./client.js', import.meta.url), 'utf8');
+export const page = (inner, interactive = false) => `<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hoàng Anh Connect – bản xem trước</title><style>${CSS}</style></head><body${interactive ? ' style="display:flex;justify-content:center;background:#E9EDF4"' : ''}>${inner}${interactive ? `<script>${CLIENT}</script>` : ''}</body></html>`;

@@ -1,0 +1,6 @@
+document.querySelectorAll('.btn,.tab,.seg>div,.tog,.sel').forEach(function(e){e.tabIndex=0;e.addEventListener('keydown',function(k){if(k.key==='Enter'||k.key===' '){k.preventDefault();e.click()}})});
+document.querySelectorAll('.btn').forEach(function(b){
+ b.addEventListener('pointerdown',function(ev){var r=b.getBoundingClientRect(),s=Math.max(r.width,r.height),x=document.createElement('span');x.className='rip';x.style.cssText='width:'+s+'px;height:'+s+'px;left:'+(ev.clientX-r.left-s/2)+'px;top:'+(ev.clientY-r.top-s/2)+'px';b.appendChild(x);setTimeout(function(){x.remove()},650)});
+ b.addEventListener('click',function(){if(b.classList.contains('loading')||b.classList.contains('dis'))return;b.classList.add('loading');b.setAttribute('aria-busy','true');setTimeout(function(){b.classList.remove('loading');b.removeAttribute('aria-busy');if(!b.classList.contains('sec2')&&!b.classList.contains('dng')){b.classList.add('done');setTimeout(function(){b.classList.remove('done')},900)}},1100)})});
+document.querySelectorAll('.seg').forEach(function(s){s.querySelectorAll(':scope>div').forEach(function(d){d.addEventListener('click',function(){s.querySelectorAll(':scope>div').forEach(function(x){x.classList.remove('on')});d.classList.add('on')})})});
+document.querySelectorAll('.tog').forEach(function(t){t.addEventListener('click',function(){t.classList.toggle('on')})});
