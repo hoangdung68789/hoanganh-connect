@@ -24,8 +24,7 @@ ${heroW('Giám đốc Mẫu', 'gd', 'Thứ Ba, 20/10/2026', gb('device', 'Duyệ
 </div>
 <div class="row" style="gap:16px;align-items:stretch;flex:1;min-height:0">
  <div class="wcard" style="flex:1;padding:0;overflow:hidden">${title('Lịch họp sắp tới')}${rowx('calendar', '', 'Họp kế hoạch tháng 11', '25/10/2026 · 09:00 · Phòng họp A', pill('Mở bình chọn', 'ok'))}${rowx('calendar', '', 'Tiệc cuối quý', 'Đã khóa bình chọn 14/10/2026 18:00', pill('Đã khóa', 'n'))}</div>
- <div class="wcard" style="flex:1;padding:0;overflow:hidden">${title('Hoạt động gần đây')}${rowx('download', 'ok', 'Giám đốc Mẫu tải bản ghi BG-0042', '09:14 · Thành công', pill('Audit', 'b'))}${rowx('device', 'wa', 'Yêu cầu thiết bị mới YC-0001', '09:12 · Chờ Admin duyệt', pill('Chờ duyệt', 'wa'))}</div></div>
-</div>` });
+ <div class="wcard" style="flex:1;padding:0;overflow:hidden">${title('Hoạt động gần đây')}${rowx('download', 'ok', 'Giám đốc Mẫu tải bản ghi BG-0042', '09:14 · Thành công', pill('Audit', 'b'))}${rowx('device', 'wa', 'Yêu cầu thiết bị mới YC-0001', '09:12 · Chờ Admin duyệt', pill('Chờ duyệt', 'wa'))}</div></div>` });
 
 // ---------- 23 Thành viên ----------
 const mr = (n, k, d, ph, j, on, last) => `<tr><td><div class="row" style="gap:10px">${av(n, 36, k, on)}<div><div class="nm">${n}</div><div class="xs">${d}</div></div></div></td><td>${badge(k, true)}</td><td>${ph}</td><td>${j}</td><td>${pill(on ? 'Đang hoạt động' : 'Ngoại tuyến', on ? 'ok' : 'n')}</td><td><div class="row" style="gap:6px;justify-content:flex-end"><div class="ico" style="width:30px;height:30px;border-radius:9px">${ic('chat', 15)}</div><div class="ico" style="width:30px;height:30px;border-radius:9px;${ph.includes('Ẩn') ? 'opacity:.4' : ''}">${ic('phone', 15)}</div></div></td></tr>`;
