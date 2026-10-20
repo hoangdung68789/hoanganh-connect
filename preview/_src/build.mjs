@@ -1,4 +1,4 @@
-import { S } from './screens2.mjs';
+import { S } from './web.mjs';
 import { page } from './lib.mjs';
 import fs from 'fs';
 import { createRequire } from 'module';
@@ -12,7 +12,7 @@ for (const [name, html] of Object.entries(S)) {
   fs.writeFileSync(`${out}_html/${name}.html`, page(html));
   fs.mkdirSync(out + 'interactive', { recursive: true });
   fs.writeFileSync(`${out}interactive/${name}.html`, page(html, true));
-  const web = name.includes('web-');
+  const web = name.includes('-web-');
   const p = await b.newPage({ reducedMotion: 'reduce', viewport: web ? { width: 1440, height: 900 } : { width: 390, height: 844 }, deviceScaleFactor: 2 });
   await p.goto('file://' + `${out}_html/${name}.html`);
   await p.evaluate(() => document.fonts.ready);

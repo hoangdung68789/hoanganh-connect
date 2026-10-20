@@ -49,6 +49,10 @@ const P = {
   camera: '<path d="M4 8h3l2-3h6l2 3h3v12H4z"/><circle cx="12" cy="13" r="3.5"/>',
   pinfill: '<path d="M9 3h6l-1 6 3 3v2H7v-2l3-3zM12 14v7"/>',
   grid: '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>',
+  trend: '<path d="m3 17 6-6 4 4 8-8M15 7h6v6"/>',
+  image: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="m21 16-5-5-8 8"/>',
+  pause: '<path d="M8 5v14M16 5v14"/>',
+  building: '<path d="M4 21V6l8-3v18M12 9h8v12M8 9h.01M8 13h.01M8 17h.01M16 13h.01M16 17h.01"/>',
   list: '<path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/>',
 };
 export const ic = (n, s = 20, c = 'currentColor', sw = 1.8) =>
@@ -61,12 +65,13 @@ export const ROLES = {
 export const badge = (k, sm = false) =>
   `<span class="rb r-${k}${sm ? ' sm' : ''}">${ic(ROLES[k][1], sm ? 11 : 13, 'currentColor', 2)}${ROLES[k][0]}</span>`;
 export const pill = (t, k = 'n') => `<span class="pill p-${k}">${t}</span>`;
-export const av = (name, s = 40, k) => {
+const RC = { hv: ['#0EA5E9', '#0369A1'], cv: ['#22A35A', '#146C3B'], dt: ['#F07A2E', '#B4501A'], pp: ['#3B63D6', '#1E3A8A'], tp: ['#8B5CF6', '#5B21B6'], gd: ['#E0A526', '#A56A06'], tl: ['#14A89B', '#0B6F66'] };
+export const av = (name, s = 40, k, online = false) => {
   const w = name.split(' ');
   const i = ((w[w.length - 2]?.[0] || '') + w[w.length - 1][0]).toUpperCase();
-  return `<span class="av" style="width:${s}px;height:${s}px;font-size:${Math.round(s * .36)}px">${i}</span>`;
+  const c = RC[k] || ['#3F6DB8', '#13315C'];
+  return `<span class="av" style="width:${s}px;height:${s}px;font-size:${Math.round(s * .36)}px;--rc:${c[0]};--rc2:${c[1]}">${i}${online ? '<i class="on-dot"></i>' : ''}</span>`;
 };
-
 export const CSS = `
 :root{--navy:#0B2545;--navy2:#13315C;--blue:#1D4ED8;--blue-soft:#E8EEF9;--bg:#F4F6FA;--card:#fff;--line:#E3E8F0;--t1:#0F1B2D;--t2:#4B5A6E;--t3:#7A889B;
 --ok:#15803D;--okbg:#DCFCE7;--wa:#B45309;--wabg:#FEF3C7;--er:#B91C1C;--erbg:#FEE2E2;--pe:#475569;--pebg:#E8ECF2;}
@@ -228,20 +233,24 @@ tr{transition:background var(--d-fast)}tbody tr:hover{background:#F5F8FD}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.btn:hover,.grid2>.card:hover,.stat:hover{transform:none}}
 `;
 
+import { CSS3, sky, clouds, moon } from './art.mjs';
 const TABS = [['home', 'Trang chủ'], ['chat', 'Chat'], ['users', 'Danh bạ'], ['bell', 'Thông báo'], ['menu', 'Thêm']];
-export function phone({ title, sub, back = false, right = '', tab = 'home', body, bar = true, tabs = true, badgeN = { Chat: 5, 'Thông báo': 3 }, lightStatus = false }) {
+const STATUS = '<div class="status"><span>09:41</span><span>LTE ▪▪▪ 86%</span></div>';
+export function phone({ title, sub, back = false, right = '', tab = 'home', body, bar = true, tabs = true, badgeN = { Chat: 5, 'Thông báo': 3 }, hero = null, heroArt = 96, seed = 11 }) {
   const t = tabs ? `<div class="tabbar">${TABS.map(([i, l]) => `<div class="tab${l === tab ? ' on' : ''}">${ic(i, 23)}${badgeN[l] ? `<span class="dot">${badgeN[l]}</span>` : ''}${l}</div>`).join('')}</div>` : '';
-  const b = bar ? `<div class="bar">${back ? `<div class="btn-i">${ic('back', 20)}</div>` : ''}<h1>${title}${sub ? `<span class="sub">${sub}</span>` : ''}</h1>${right}</div>` : '';
-  return `<div class="phone"><div class="status${lightStatus ? ' light' : ''}"><span>09:41</span><span>LTE ▪▪▪ 86%</span></div>${b}<div class="body">${body}</div>${t}<div class="foot">BẢN XEM TRƯỚC – DỮ LIỆU MẪU</div></div>`;
+  let h = '';
+  if (hero) h = `<div class="hd hero">${moon()}${clouds()}${sky(390, heroArt, seed)}${STATUS}<div class="hero-in" style="padding-bottom:${Math.round(heroArt * .55)}px">${hero}</div></div>`;
+  else if (bar) h = `<div class="hd std">${sky(390, 72, seed)}${STATUS}<div class="bar">${back ? `<div class="btn-i">${ic('back', 20)}</div>` : ''}<h1>${title}${sub ? `<span class="sub">${sub}</span>` : ''}</h1>${right}</div></div>`;
+  return `<div class="phone">${h}<div class="body">${body}</div>${t}<div class="foot">BẢN XEM TRƯỚC – DỮ LIỆU MẪU</div></div>`;
 }
 export function web({ active, title, body, user = ['Giám đốc Mẫu', 'gd'] }) {
   const nav = [['home', 'Tổng quan'], ['users', 'Thành viên'], ['chat', 'Hoàng Anh Connect'], ['brief', 'Tuyển dụng'], ['book', 'Đào tạo'], ['calendar', 'Lịch họp & bình chọn'], ['wallet', 'Chi phí & báo cáo'], ['spark', 'Hoàng Anh AI'], ['mic2', 'Bản ghi âm']];
   const adm = [['key', 'Trung tâm phân quyền'], ['list', 'Audit log'], ['device', 'Duyệt thiết bị']];
   const it = ([i, l]) => `<div class="it${l === active ? ' on' : ''}">${ic(i, 19)}${l}</div>`;
-  return `<div class="web"><div class="wrap"><div class="side"><div class="logo"><i>HA</i>Hoàng Anh Connect</div>${nav.map(it).join('')}<div class="grp">QUẢN TRỊ</div>${adm.map(it).join('')}</div>
-<div class="main"><div class="top"><h1 style="font-size:20px;font-weight:800;flex:1">${title}</h1><div class="search" style="width:300px;height:38px">${ic('search', 17)}Tìm kiếm</div><div class="btn-i" style="color:var(--navy2)">${ic('bell', 21)}</div><div class="row">${av(user[0], 36)}<div><div class="nm" style="font-size:13px">${user[0]}</div>${badge(user[1], true)}</div></div></div>
+  return `<div class="web"><div class="wrap"><div class="side"><div class="logo"><i>HA</i>Hoàng Anh Connect</div>${nav.map(it).join('')}<div class="grp">QUẢN TRỊ</div>${adm.map(it).join('')}${sky(256, 170, 23)}</div>
+<div class="main"><div class="top"><div class="sp"><div class="crumb">Hoàng Anh Connect / <b>${title}</b></div></div><div class="search" style="width:300px;height:38px">${ic('search', 17)}Tìm kiếm</div><div class="btn-i" style="color:var(--navy2);position:relative;background:#EEF3FA!important;border-color:var(--line)">${ic('bell', 20)}<span style="position:absolute;top:-3px;right:-3px;width:16px;height:16px;border-radius:8px;background:var(--er);color:#fff;font-size:10px;font-weight:700;display:grid;place-items:center">3</span></div><div class="row">${av(user[0], 38, user[1] === 'ad' ? 'pp' : user[1], true)}<div><div class="nm" style="font-size:13px">${user[0]}</div>${user[1] === 'ad' ? pill(ic('key', 11, 'currentColor', 2) + 'Admin hệ thống', 'b') : badge(user[1], true)}</div></div></div>
 <div class="cont">${body}</div></div></div><div class="foot" style="height:26px;font-size:11px">BẢN XEM TRƯỚC – DỮ LIỆU MẪU</div></div>`;
 }
 import fs from 'fs';
 const CLIENT = fs.readFileSync(new URL('./client.js', import.meta.url), 'utf8');
-export const page = (inner, interactive = false) => `<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hoàng Anh Connect – bản xem trước</title><style>${CSS}</style></head><body${interactive ? ' style="display:flex;justify-content:center;background:#E9EDF4"' : ''}>${inner}${interactive ? `<script>${CLIENT}</script>` : ''}</body></html>`;
+export const page = (inner, interactive = false) => `<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hoàng Anh Connect – bản xem trước</title><style>${CSS}${CSS3}</style></head><body${interactive ? ' style="display:flex;justify-content:center;background:#E9EDF4"' : ''}>${inner}${interactive ? `<script>${CLIENT}</script>` : ''}</body></html>`;

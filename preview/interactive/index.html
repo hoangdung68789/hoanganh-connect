@@ -157,4 +157,83 @@ tr{transition:background var(--d-fast)}tbody tr:hover{background:#F5F8FD}
 @keyframes ind{from{width:0;opacity:0}to{width:30px;opacity:1}}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.btn:hover,.grid2>.card:hover,.stat:hover{transform:none}}
-</style></head><body><div style="max-width:560px;margin:40px auto;padding:0 16px;font-family:Inter,sans-serif"><h1 style="color:#0B2545;font-size:22px">Hoàng Anh Connect – bản xem trước tương tác</h1><p style="color:#4B5A6E;margin:8px 0 18px">BẢN XEM TRƯỚC – DỮ LIỆU MẪU. Thử bấm nút (hiệu ứng nhấn, gợn sóng, đang xử lý), chuyển tab, bật/tắt công tắc, dùng phím Tab để thấy viền focus.</p><ol style="line-height:2"><li><a href="01-dang-nhap.html" style="color:#1D4ED8">01-dang-nhap</a></li><li><a href="02-cho-duyet-thiet-bi.html" style="color:#1D4ED8">02-cho-duyet-thiet-bi</a></li><li><a href="03-trang-chu-giam-doc.html" style="color:#1D4ED8">03-trang-chu-giam-doc</a></li><li><a href="04-trang-chu-tro-ly.html" style="color:#1D4ED8">04-trang-chu-tro-ly</a></li><li><a href="05-danh-ba.html" style="color:#1D4ED8">05-danh-ba</a></li><li><a href="06-ho-so-thanh-vien.html" style="color:#1D4ED8">06-ho-so-thanh-vien</a></li><li><a href="07-chat-danh-sach.html" style="color:#1D4ED8">07-chat-danh-sach</a></li><li><a href="08-chat-khung-chat.html" style="color:#1D4ED8">08-chat-khung-chat</a></li><li><a href="09-cong-dang-ky-ung-vien.html" style="color:#1D4ED8">09-cong-dang-ky-ung-vien</a></li><li><a href="10-ung-vien-theo-doi-ho-so.html" style="color:#1D4ED8">10-ung-vien-theo-doi-ho-so</a></li><li><a href="11-quan-ly-ung-vien-tro-ly.html" style="color:#1D4ED8">11-quan-ly-ung-vien-tro-ly</a></li><li><a href="12-dao-tao-hoc-vien.html" style="color:#1D4ED8">12-dao-tao-hoc-vien</a></li><li><a href="13-lich-hop-binh-chon.html" style="color:#1D4ED8">13-lich-hop-binh-chon</a></li><li><a href="14-chi-phi-bao-cao.html" style="color:#1D4ED8">14-chi-phi-bao-cao</a></li><li><a href="15-hoang-anh-ai.html" style="color:#1D4ED8">15-hoang-anh-ai</a></li><li><a href="16-nghe-tai-ban-ghi-am.html" style="color:#1D4ED8">16-nghe-tai-ban-ghi-am</a></li><li><a href="17-thong-bao.html" style="color:#1D4ED8">17-thong-bao</a></li><li><a href="18-cai-dat-bao-mat-thiet-bi.html" style="color:#1D4ED8">18-cai-dat-bao-mat-thiet-bi</a></li><li><a href="19-trung-tam-phan-quyen.html" style="color:#1D4ED8">19-trung-tam-phan-quyen</a></li><li><a href="20-audit-log.html" style="color:#1D4ED8">20-audit-log</a></li><li><a href="21-web-dashboard-dieu-hanh.html" style="color:#1D4ED8">21-web-dashboard-dieu-hanh</a></li><li><a href="22-web-phan-quyen-audit-log.html" style="color:#1D4ED8">22-web-phan-quyen-audit-log</a></li><li><a href="23-hieu-ung-nut-bam.html" style="color:#1D4ED8">23-hieu-ung-nut-bam</a></li></ol></div></body></html>
+
+:root{--ice:#EAF1FB;--glow:#5B9DFF;--sh2:0 2px 4px rgba(11,37,69,.05),0 20px 38px -20px rgba(11,37,69,.3);--bg:#F2F5FB}
+body{background:#fff}
+.phone{background:linear-gradient(180deg,#F4F7FC,#EDF2FA)}
+.hd{position:relative;flex:none;overflow:hidden;color:#fff;background:radial-gradient(120% 150% at 90% -20%,rgba(91,157,255,.55),transparent 50%),linear-gradient(135deg,#061630 0%,#0B2545 48%,#18488C 100%)}
+.hd .status,.hd .bar{background:none!important;box-shadow:none!important;position:relative;z-index:2}
+.hd .art,.side .art{position:absolute;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden}
+.sky{display:block;width:100%;height:100%}
+.hd.std .art{height:72px!important;opacity:.95;-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000 88%);mask-image:linear-gradient(90deg,transparent 30%,#000 88%)}
+.hero-in{position:relative;z-index:2;padding:4px 18px 86px}
+.hero-in h1{font-size:19px;font-weight:800;letter-spacing:-.01em;line-height:1.2}
+.hero-in .sub{font-size:12.5px;opacity:.82;margin-top:3px}
+.cloud{position:absolute;left:0;height:14px;width:70px;border-radius:14px;background:rgba(255,255,255,.12);filter:blur(1px);animation:drift 30s linear infinite}
+.moon{position:absolute;right:76px;top:52px;width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#D6E4FF 60%,#93B6F2);box-shadow:0 0 28px 8px rgba(143,180,240,.4);animation:float 7s ease-in-out infinite}
+.w1{animation:tw 3.2s ease-in-out infinite}.w2{opacity:.5;animation:tw 4.6s ease-in-out infinite}
+.btn-i{background:rgba(255,255,255,.14)!important;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.16);transition:transform .2s var(--e-out),background .2s}
+.btn-i:hover{background:rgba(255,255,255,.24)!important;transform:translateY(-1px)}.btn-i:active{transform:scale(.92)}
+.card,.stat{border-radius:18px;border:1px solid rgba(214,223,238,.8);box-shadow:var(--sh2)}
+.av{position:relative;color:#fff;border:2px solid #fff;background:linear-gradient(135deg,var(--rc,#3F6DB8),var(--rc2,#13315C));box-shadow:0 0 0 2px color-mix(in srgb,var(--rc,#3F6DB8) 55%,#fff),0 6px 12px -6px rgba(11,37,69,.5);letter-spacing:.02em}
+.on-dot{position:absolute;right:-1px;bottom:-1px;width:11px;height:11px;border-radius:50%;background:#22C55E;border:2px solid #fff}
+.chip{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--c,#2563EB),color-mix(in srgb,var(--c,#2563EB) 60%,#061630));box-shadow:0 8px 14px -8px var(--c,#2563EB)}
+.trend{font-size:11.5px;font-weight:700;border-radius:999px;padding:2px 8px}.trend.up{background:#DCFCE7;color:#15803D}.trend.dn{background:#FEE2E2;color:#B91C1C}.trend.wa{background:#FEF3C7;color:#B45309}
+.spark{display:block;margin-top:3px}.spark .draw{stroke-dasharray:1;stroke-dashoffset:0;animation:draw 1.2s var(--e-out) .3s backwards}
+.ringw{position:relative;flex:none}.ringi{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.arc{animation:arc 1.1s var(--e-out) .2s backwards}
+.wave{display:flex;align-items:center;gap:2.5px;height:44px}.wave.big{height:92px;gap:4px}
+.wave i{flex:1;border-radius:3px;background:#C5D2E8;min-width:2px;transform-origin:center}.wave i.p{background:linear-gradient(180deg,#3B7BE8,#13315C)}
+.wave.playing i{animation:eq 900ms ease-in-out infinite alternate}
+.orb{position:relative;display:grid;place-items:center;margin:0 auto}
+.orb i{position:absolute;inset:0;border-radius:50%}
+.orb .o1{background:radial-gradient(circle at 32% 28%,#9CC3FF,#2563EB 45%,#0B2545 100%);box-shadow:0 18px 40px -10px rgba(37,99,235,.7),inset 0 -8px 18px rgba(6,22,48,.5);animation:float 5s ease-in-out infinite}
+.orb .o2{inset:-10px;border:1.5px solid rgba(91,157,255,.45);animation:spin 14s linear infinite;border-top-color:transparent}
+.orb .o3{inset:-22px;border:1px dashed rgba(91,157,255,.35);animation:spin 22s linear infinite reverse}
+.orb svg{position:relative;z-index:1;animation:float 5s ease-in-out infinite}
+.radar{position:relative;display:grid;place-items:center;margin:0 auto}
+.radar i{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(245,158,11,.55);animation:pulsering 2.6s var(--e-out) infinite}
+.radar i:nth-child(2){animation-delay:.85s}.radar i:nth-child(3){animation-delay:1.7s}
+.radar .rc{position:relative;width:62%;height:62%;border-radius:50%;background:linear-gradient(135deg,#FDE9B4,#F5B93D);color:#8A4B08;display:grid;place-items:center;box-shadow:0 14px 28px -10px rgba(245,158,11,.7)}
+.typing{display:inline-flex;gap:4px;align-items:center;padding:10px 12px}.typing i{width:6px;height:6px;border-radius:50%;background:#8A99B0;animation:bounce 1.2s ease-in-out infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+.tabbar{border-top:0;box-shadow:0 -10px 24px -16px rgba(11,37,69,.35);background:rgba(255,255,255,.96);padding:6px 8px 0}
+.tab{border-radius:14px;margin:0 2px;padding-top:5px;height:50px}.tab.on{background:var(--ice);color:var(--navy)}.tab.on::before{display:none}
+.tab.on .ic{transform:translateY(-1px) scale(1.1);stroke-width:2.2}
+.foot{background:#0B2545;color:#A9BCDB;border-top:0}
+.btn{border-radius:14px}
+.glass{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);border-radius:16px}
+.tl-line{position:relative}.tl-line::before{content:'';position:absolute;left:18px;top:6px;bottom:6px;width:2px;background:linear-gradient(#BFD0EA,#E3EAF5)}
+.tl-line>div{position:relative}.tl-line>div::before{content:'';position:absolute;left:-27px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--c,#2563EB);border:3px solid #fff;box-shadow:0 0 0 2px var(--c,#2563EB)}
+.cont{gap:14px!important}
+/* ---- WEB v3 ---- */
+.web{background:#F2F5FB}
+.side{position:relative;background:radial-gradient(120% 60% at 0% 0%,rgba(91,157,255,.28),transparent 55%),linear-gradient(180deg,#061630,#0B2545 60%,#0D2B55);overflow:hidden;width:256px}
+.side .art{height:170px;opacity:.9}
+.side .it{position:relative;z-index:1;border-radius:12px}.side .it.on{background:linear-gradient(90deg,rgba(91,157,255,.28),rgba(91,157,255,.08));box-shadow:inset 3px 0 0 #7DB1FF}
+.side .logo,.side .grp{position:relative;z-index:1}
+.top{background:rgba(255,255,255,.85);backdrop-filter:blur(10px);height:66px}
+.crumb{font-size:12.5px;color:var(--t3)}.crumb b{color:var(--t1)}
+.wh{position:relative;overflow:hidden;border-radius:22px;color:#fff;padding:22px 26px;background:radial-gradient(90% 160% at 92% -30%,rgba(91,157,255,.6),transparent 52%),linear-gradient(120deg,#061630 0%,#0B2545 45%,#1A4C94 100%);box-shadow:0 24px 44px -26px rgba(11,37,69,.7)}
+.wh .art{position:absolute;right:0;bottom:0;top:0;width:62%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%);mask-image:linear-gradient(90deg,transparent,#000 40%)}
+.wh>*:not(.art){position:relative;z-index:2}
+.wh h2{font-size:24px;font-weight:800;letter-spacing:-.01em}
+.wcard{border-radius:20px;border:1px solid rgba(214,223,238,.85);box-shadow:var(--sh2);transition:transform .25s var(--e-out),box-shadow .25s var(--e-out)}
+.wcard:hover{transform:translateY(-2px);box-shadow:0 2px 6px rgba(11,37,69,.06),0 26px 44px -22px rgba(11,37,69,.34)}
+.kpi{display:flex;flex-direction:column;gap:2px}.kpi .n{font-size:30px;font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1.1}
+.kan{background:#EEF3FA;border-radius:16px;padding:10px;display:flex;flex-direction:column;gap:8px;flex:1;min-width:0}
+.kc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px;box-shadow:0 6px 14px -10px rgba(11,37,69,.3);transition:transform .2s var(--e-out),box-shadow .2s}.kc:hover{transform:translateY(-2px);box-shadow:0 14px 24px -12px rgba(11,37,69,.35)}
+.barv{transform-box:fill-box;transform-origin:bottom;animation:growy .9s var(--e-out) backwards}
+.btn.glassb{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.28);box-shadow:none;color:#fff;backdrop-filter:blur(8px)}
+.btn.glassb:hover{background:rgba(255,255,255,.24)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.cal .d{aspect-ratio:auto;height:92px;border-radius:12px;background:#F5F8FD;border:1px solid transparent;padding:6px 8px;font-size:12.5px;font-weight:600;color:var(--t2);position:relative;transition:transform .2s var(--e-out),background .2s}.cal .d:hover{transform:translateY(-2px);background:#EAF1FB}.cal .h{font-size:11.5px;font-weight:700;color:var(--t3);text-align:center;padding:2px 0}.cal .d.today{background:var(--navy);color:#fff}.cal .d.ev{background:#EDE9FE;color:#5B21B6;border-color:#DDD6FE}.cal .d.dl{background:#FEF3C7;color:#8A4B08;border-color:#F2DCA0}.cal .d.lk{background:#E8ECF2;color:#475569}.cal .d.off{opacity:.35}.cal .d small{position:absolute;left:8px;bottom:5px;font-size:10px;font-weight:700}
+@keyframes growy{from{transform:scaleY(0)}}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes arc{from{stroke-dasharray:0 100}}
+@keyframes drift{from{transform:translateX(-120px)}to{transform:translateX(560px)}}
+@keyframes float{50%{transform:translateY(-5px)}}
+@keyframes tw{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes eq{from{transform:scaleY(.45)}to{transform:scaleY(1)}}
+@keyframes pulsering{from{transform:scale(.62);opacity:.9}to{transform:scale(1.35);opacity:0}}
+@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-5px);opacity:1}}
+@media (prefers-reduced-motion:reduce){.moon,.cloud,.orb *,.radar i,.typing i{animation:none!important}.radar i{opacity:.45}.radar i:nth-child(1){transform:scale(.8)}.radar i:nth-child(2){transform:scale(1)}.radar i:nth-child(3){transform:scale(1.2);opacity:.2}}
+</style></head><body><div style="max-width:560px;margin:40px auto;padding:0 16px;font-family:Inter,sans-serif"><h1 style="color:#0B2545;font-size:22px">Hoàng Anh Connect – bản xem trước tương tác</h1><p style="color:#4B5A6E;margin:8px 0 18px">BẢN XEM TRƯỚC – DỮ LIỆU MẪU. Thử bấm nút (hiệu ứng nhấn, gợn sóng, đang xử lý), chuyển tab, bật/tắt công tắc, dùng phím Tab để thấy viền focus.</p><ol style="line-height:2"><li><a href="01-dang-nhap.html" style="color:#1D4ED8">01-dang-nhap</a></li><li><a href="02-cho-duyet-thiet-bi.html" style="color:#1D4ED8">02-cho-duyet-thiet-bi</a></li><li><a href="03-trang-chu-giam-doc.html" style="color:#1D4ED8">03-trang-chu-giam-doc</a></li><li><a href="04-trang-chu-tro-ly.html" style="color:#1D4ED8">04-trang-chu-tro-ly</a></li><li><a href="05-danh-ba.html" style="color:#1D4ED8">05-danh-ba</a></li><li><a href="06-ho-so-thanh-vien.html" style="color:#1D4ED8">06-ho-so-thanh-vien</a></li><li><a href="07-chat-danh-sach.html" style="color:#1D4ED8">07-chat-danh-sach</a></li><li><a href="08-chat-khung-chat.html" style="color:#1D4ED8">08-chat-khung-chat</a></li><li><a href="09-cong-dang-ky-ung-vien.html" style="color:#1D4ED8">09-cong-dang-ky-ung-vien</a></li><li><a href="10-ung-vien-theo-doi-ho-so.html" style="color:#1D4ED8">10-ung-vien-theo-doi-ho-so</a></li><li><a href="11-quan-ly-ung-vien-tro-ly.html" style="color:#1D4ED8">11-quan-ly-ung-vien-tro-ly</a></li><li><a href="12-dao-tao-hoc-vien.html" style="color:#1D4ED8">12-dao-tao-hoc-vien</a></li><li><a href="13-lich-hop-binh-chon.html" style="color:#1D4ED8">13-lich-hop-binh-chon</a></li><li><a href="14-chi-phi-bao-cao.html" style="color:#1D4ED8">14-chi-phi-bao-cao</a></li><li><a href="15-hoang-anh-ai.html" style="color:#1D4ED8">15-hoang-anh-ai</a></li><li><a href="16-nghe-tai-ban-ghi-am.html" style="color:#1D4ED8">16-nghe-tai-ban-ghi-am</a></li><li><a href="17-thong-bao.html" style="color:#1D4ED8">17-thong-bao</a></li><li><a href="18-cai-dat-bao-mat-thiet-bi.html" style="color:#1D4ED8">18-cai-dat-bao-mat-thiet-bi</a></li><li><a href="19-trung-tam-phan-quyen.html" style="color:#1D4ED8">19-trung-tam-phan-quyen</a></li><li><a href="20-audit-log.html" style="color:#1D4ED8">20-audit-log</a></li><li><a href="21-hieu-ung-nut-bam.html" style="color:#1D4ED8">21-hieu-ung-nut-bam</a></li><li><a href="22-web-dashboard-dieu-hanh.html" style="color:#1D4ED8">22-web-dashboard-dieu-hanh</a></li><li><a href="23-web-thanh-vien.html" style="color:#1D4ED8">23-web-thanh-vien</a></li><li><a href="24-web-chat.html" style="color:#1D4ED8">24-web-chat</a></li><li><a href="25-web-tuyen-dung.html" style="color:#1D4ED8">25-web-tuyen-dung</a></li><li><a href="26-web-dao-tao.html" style="color:#1D4ED8">26-web-dao-tao</a></li><li><a href="27-web-lich-hop.html" style="color:#1D4ED8">27-web-lich-hop</a></li><li><a href="28-web-chi-phi.html" style="color:#1D4ED8">28-web-chi-phi</a></li><li><a href="29-web-hoang-anh-ai.html" style="color:#1D4ED8">29-web-hoang-anh-ai</a></li><li><a href="30-web-ban-ghi-am.html" style="color:#1D4ED8">30-web-ban-ghi-am</a></li><li><a href="31-web-phan-quyen-audit-log.html" style="color:#1D4ED8">31-web-phan-quyen-audit-log</a></li><li><a href="32-web-duyet-thiet-bi.html" style="color:#1D4ED8">32-web-duyet-thiet-bi</a></li></ol></div></body></html>
